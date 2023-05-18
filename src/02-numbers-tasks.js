@@ -52,8 +52,10 @@ function getCircleCircumference(radius) {
  *  10, 0  => 5
  *  -3, 3  => 0
  */
-function getAverage(/* value1, value2 */) {
-  throw new Error('Not implemented');
+function getAverage(value1, value2) {
+  const MagicDivider = 2;
+  const sum = (value1 / MagicDivider) + (value2 / MagicDivider);
+  return sum;
 }
 
 /**
@@ -183,8 +185,12 @@ function getParallelepipedDiagonal(a, b, c) {
  *   1678, 2  => 1700
  *   1678, 3  => 2000
  */
-function roundToPowerOfTen(/* num, pow */) {
-  throw new Error('Not implemented');
+function roundToPowerOfTen(num, pow) {
+  const powerOfTen = 10;
+  const baseInPow = powerOfTen ** pow;
+  const rounded = Math.round(num / baseInPow);
+  const result = rounded * baseInPow;
+  return result;
 }
 
 /**
@@ -204,9 +210,21 @@ function roundToPowerOfTen(/* num, pow */) {
  *   16 => false
  *   17 => true
  */
-function isPrime(/* n */) {
-  throw new Error('Not implemented');
+function isPrime(number) {
+  const start = 2;
+  // Per Wikipedia, a prime number ( or a prime )
+  // is a natural number greater than 1 that has no positive divisors other than 1 and itself.
+  if (number < start) {
+    return false;
+  }
+  for (let index = start; index <= Math.sqrt(number); index += 1) {
+    if (number % index === 0) {
+      return false;
+    }
+  }
+  return true;
 }
+
 
 /**
  * Tries to convert value to number and returns it if conversion was successful;
@@ -223,8 +241,12 @@ function isPrime(/* n */) {
  *   toNumber(42, 0) => 42
  *   toNumber(new Number(42), 0) => 42
  */
-function toNumber(/* value, def */) {
-  throw new Error('Not implemented');
+function toNumber(value, def) {
+  const template = Number(value);
+  if (Number.isNaN(template)) {
+    return def;
+  }
+  return template;
 }
 
 module.exports = {
