@@ -17,5 +17,6 @@ module.exports = {
   },
   rules: {
     /*eslint linebreak-style: ["error", "windows"]*/
+    /*eslint prefer-const: "error"*/
   },
 };
