@@ -276,8 +276,10 @@ function getSecondItems(arr) {
  *  [ 'a', 'b', 'c', null ] => [ 'a', 'b','b', 'c','c','c',  null,null,null,null ]
  *  [ 1,2,3,4,5 ] => [ 1, 2,2, 3,3,3, 4,4,4,4, 5,5,5,5,5 ]
  */
-function propagateItemsByPositionIndex(/* arr */) {
-  throw new Error('Not implemented');
+function propagateItemsByPositionIndex(arr) {
+  const rep = arr.map((item) => Array(arr.indexOf(item) + 1).fill(item, 0, arr.indexOf(item) + 1));
+  const result = rep.flat(1);
+  return result;
 }
 
 /**
@@ -293,8 +295,12 @@ function propagateItemsByPositionIndex(/* arr */) {
  *   [ 1,2,3,4,5,6,7,8,9,10 ] => [ 10, 9, 8 ]
  *   [ 10, 10, 10, 10 ] => [ 10, 10, 10 ]
  */
-function get3TopItems(/* arr */) {
-  throw new Error('Not implemented');
+function get3TopItems(arr) {
+  const newArr = arr.sort((num1, num2) => {
+    const value = num2 - num1;
+    return value;
+  });
+  return newArr.slice(0, 3);
 }
 
 /**
@@ -310,8 +316,9 @@ function get3TopItems(/* arr */) {
  *   [ null, 1, 'elephant' ] => 1
  *   [ 1, '2' ] => 1
  */
-function getPositivesCount(/* arr */) {
-  throw new Error('Not implemented');
+function getPositivesCount(arr) {
+  const value = arr.filter((item) => typeof item === 'number' && item > 0);
+  return value.length;
 }
 
 /**
@@ -327,8 +334,25 @@ function getPositivesCount(/* arr */) {
  *   [ 'nine','eight','nine','eight'] => [ 'eight','eight','nine','nine']
  *   [ 'one','one','one','zero' ]     => [ 'zero','one','one','one' ]
  */
-function sortDigitNamesByNumericOrder(/* arr */) {
-  throw new Error('Not implemented');
+function sortDigitNamesByNumericOrder(arr) {
+  const compareDigit = (value1, value2) => {
+    const digitArray = [
+      'zero',
+      'one',
+      'two',
+      'three',
+      'four',
+      'five',
+      'six',
+      'seven',
+      'eight',
+      'nine',
+    ];
+    const result = digitArray.indexOf(value1) - digitArray.indexOf(value2);
+    return result;
+  };
+  const sortArray = arr.sort(compareDigit);
+  return sortArray;
 }
 
 /**
@@ -343,8 +367,13 @@ function sortDigitNamesByNumericOrder(/* arr */) {
  *   [ -1, 1, -1, 1 ]      => 0
  *   [ 1, 10, 100, 1000 ]  => 1111
  */
-function getItemsSum(/* arr */) {
-  throw new Error('Not implemented');
+function getItemsSum(arr) {
+  const inintialValue = 0;
+  const result = arr.reduce((firstValue, secondValue) => {
+    const value = firstValue + secondValue;
+    return value;
+  }, inintialValue);
+  return result;
 }
 
 /**
@@ -359,8 +388,9 @@ function getItemsSum(/* arr */) {
  *  [ -1, 'false', null, 0 ] => 2
  *  [ null, undefined, NaN, false, 0, '' ]  => 6
  */
-function getFalsyValuesCount(/* arr */) {
-  throw new Error('Not implemented');
+function getFalsyValuesCount(arr) {
+  const value = arr.filter((item) => !item);
+  return value.length;
 }
 
 /**
@@ -377,8 +407,13 @@ function getFalsyValuesCount(/* arr */) {
  *    [ null, undefined, null ], null => 2
  *    [ true, 0, 1, 'true' ], true => 1
  */
-function findAllOccurrences(/* arr, item */) {
-  throw new Error('Not implemented');
+function findAllOccurrences(arr, item) {
+  const inintialValue = 0;
+  const value = arr.reduce((count, element) => {
+    const result = count + (element === item);
+    return result;
+  }, inintialValue);
+  return value;
 }
 
 /**
@@ -392,8 +427,8 @@ function findAllOccurrences(/* arr, item */) {
  *    [1, 2, 3, 4, 5]                   => '1,2,3,4,5'
  *    ['rock', 'paper', 'scissors']     => 'rock,paper,scissors'
  */
-function toStringList(/* arr */) {
-  throw new Error('Not implemented');
+function toStringList(arr) {
+  return arr.join(',');
 }
 
 /**
@@ -422,8 +457,30 @@ function toStringList(/* arr */) {
  *      { country: 'Russia',  city: 'Saint Petersburg' }
  *    ]
  */
-function sortCitiesArray(/* arr */) {
-  throw new Error('Not implemented');
+function sortCitiesArray(arr) {
+  const result = arr.sort((value1, value2) => {
+    const country1 = value1.country.toUpperCase(); // ignore upper and lowercase
+    const country2 = value2.country.toUpperCase(); // ignore upper and lowercase
+    if (country1 < country2) {
+      return -1;
+    }
+    if (country1 > country2) {
+      return 1;
+    }
+    if (country1 === country2) {
+      const city1 = value1.city.toUpperCase(); // ignore upper and lowercase
+      const city2 = value2.city.toUpperCase(); // ignore upper and lowercase
+      if (city1 < city2) {
+        return -1;
+      }
+      if (city1 > city2) {
+        return 1;
+      }
+      return 0;
+    }
+    return 0;
+  });
+  return result;
 }
 
 /**
@@ -444,8 +501,14 @@ function sortCitiesArray(/* arr */) {
  *           [0,0,0,1,0],
  *           [0,0,0,0,1]]
  */
-function getIdentityMatrix(/* n */) {
-  throw new Error('Not implemented');
+function getIdentityMatrix(num) {
+  const arrLength = num;
+  const zero = 0;
+  const start = 1;
+  const arr = Array(num).fill(zero);
+  const value = arr.map(() => Array(num).fill(zero, arr[start], arrLength));
+  const result = value.map((item, index) => item.fill(start, index, index + 1));
+  return result;
 }
 
 /**
