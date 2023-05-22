@@ -16,7 +16,6 @@ module.exports = {
     ecmaVersion: 2018,
   },
   rules: {
-    /*eslint linebreak-style: ["error", "windows"]*/
-    /*eslint prefer-const: "error"*/
+  "linebreak-style":0
   },
 };
