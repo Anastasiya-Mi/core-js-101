@@ -53,11 +53,11 @@ function getFizzBuzz(num) {
  *   5  => 120
  *   10 => 3628800
  */
-function getFactorial(n) {
-  if (n === 1) {
+function getFactorial(number) {
+  if (number === 1) {
     return 1;
   }
-  return n * getFactorial(n - 1);
+  return number * getFactorial(number - 1);
 }
 
 /**
@@ -72,10 +72,10 @@ function getFactorial(n) {
  *   5,10  =>  45 ( = 5+6+7+8+9+10 )
  *   -1,1  =>  0  ( = -1 + 0 + 1 )
  */
-function getSumBetweenNumbers(n, n1) {
-  let sum = n;
-  let value = n;
-  while (value !== n1) {
+function getSumBetweenNumbers(number, numberSecond) {
+  let sum = number;
+  let value = number;
+  while (value !== numberSecond) {
     value += 1;
     sum += value;
   }
@@ -133,7 +133,7 @@ function isTriangle(a, b, c) {
  *   { top:20, left:20, width: 20, height: 20 }    =>  false
  *
  */
-function doRectanglesOverlap(rect1, rect2) {
+function doRectanglesOverlap(coordinateFirst, coordinateSecond) {
   function createCoordinate(obj) {
     const x1 = obj.top;
     const x2 = obj.top + obj.width;
@@ -141,17 +141,11 @@ function doRectanglesOverlap(rect1, rect2) {
     const y2 = obj.left + obj.height;
     return [x1, y1, x2, y2];
   }
-  const firstRectangles = createCoordinate(rect1);
-  const secondRectangles = createCoordinate(rect2);
+  const [x1, y1, x2, y2] = createCoordinate(coordinateFirst);
+  const [x3, y3, x4, y4] = createCoordinate(coordinateSecond);
   // has horizontal gap x1 = 0,y1 =1,x2=2,y2 =3
-  if (firstRectangles[0] > secondRectangles[2] || secondRectangles[0] > firstRectangles[2]) {
-    return false;
-  }
-  // has vertical gap
-  if (firstRectangles[1] > secondRectangles[3] || secondRectangles[1] > firstRectangles[3]) {
-    return false;
-  }
-  return true;
+  const value = !((x1 > x4 || x3 > x2) || (y1 > y4 || y3 > y2));
+  return value;
 }
 
 /**
@@ -204,11 +198,12 @@ function isInsideCircle(circle, point) {
  *   'entente' => null
  */
 function findFirstSingleChar(str) {
+  const firstChar = 0;
   for (let i = 0; i < str.length; i += 1) {
     const value = str.matchAll(str[i]);
     const result = [...value];
     if (result.length === 1) {
-      return result[0][0];
+      return result[firstChar][firstChar];
     }
   }
   return null;

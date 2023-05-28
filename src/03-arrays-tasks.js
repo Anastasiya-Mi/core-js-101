@@ -162,9 +162,9 @@ function insertItem(arr, item, index) {
  *    [ 1, 3, 4, 5 ], 2 => [ 1, 3 ]
  *    [ 'a', 'b', 'c', 'd'], 3  => [ 'a', 'b', 'c' ]
  */
-function getHead(arr, n) {
+function getHead(arr, countOfItems) {
   const start = 0;
-  const value = n;
+  const value = countOfItems;
   return arr.slice(start, value);
 }
 
@@ -178,8 +178,8 @@ function getHead(arr, n) {
  *    [ 1, 3, 4, 5 ], 2  => [ 4, 5 ]
  *    [ 'a', 'b', 'c', 'd'], 3  => [ 'b', 'c', 'd' ]
  */
-function getTail(arr, n) {
-  const value = -n;
+function getTail(arr, countOfItems) {
+  const value = -countOfItems;
   return arr.slice(value);
 }
 
@@ -239,10 +239,11 @@ function toArrayOfSquares(arr) {
  */
 function getMovingSum(arr) {
   const newArr = [];
+  const initialValue = 0;
   arr.reduce((firstValue, secondValue, index) => {
     newArr[index] = firstValue + secondValue;
     return newArr[index];
-  }, 0);
+  }, initialValue);
   return newArr;
 }
 
@@ -368,11 +369,11 @@ function sortDigitNamesByNumericOrder(arr) {
  *   [ 1, 10, 100, 1000 ]  => 1111
  */
 function getItemsSum(arr) {
-  const inintialValue = 0;
+  const initialValue = 0;
   const result = arr.reduce((firstValue, secondValue) => {
     const value = firstValue + secondValue;
     return value;
-  }, inintialValue);
+  }, initialValue);
   return result;
 }
 
@@ -408,11 +409,11 @@ function getFalsyValuesCount(arr) {
  *    [ true, 0, 1, 'true' ], true => 1
  */
 function findAllOccurrences(arr, item) {
-  const inintialValue = 0;
+  const initialValue = 0;
   const value = arr.reduce((count, element) => {
     const result = count + (element === item);
     return result;
-  }, inintialValue);
+  }, initialValue);
   return value;
 }
 

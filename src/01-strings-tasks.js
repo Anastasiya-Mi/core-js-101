@@ -18,8 +18,8 @@
  *   'aa',''    => 'aa'
  *   '',  'bb'  => 'bb'
  */
-function concatenateStrings(value1, value2) {
-  return value1 + value2;
+function concatenateStrings(valueFirst, valueSecond) {
+  return valueFirst + valueSecond;
 }
 
 
@@ -84,7 +84,8 @@ function extractNameFromTemplate(value) {
  *   'cat'       => 'c'
  */
 function getFirstChar(value) {
-  const str = value.charAt(0);
+  const firstChar = 0;
+  const str = value.charAt(firstChar);
   return str;
 }
 
