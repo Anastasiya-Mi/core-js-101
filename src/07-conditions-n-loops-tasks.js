@@ -289,8 +289,24 @@ function reverseInteger(num) {
  *   5436468789016589 => false
  *   4916123456789012 => false
  */
-function isCreditCardNumber(/* ccn */) {
-  throw new Error('Not implemented');
+function isCreditCardNumber(ccn) {
+  const array = ccn.toString().split('').map(Number);
+  const lastDigit = array.pop();
+  let sum = 0;
+  let value = 0;
+  for (let index = 0; index < array.length; index += 1) {
+    if (array.length % 2 === 0) {
+      value = index % 2 === 0 ? array[index] : array[index] * 2;
+    } else {
+      value = index % 2 !== 0 ? array[index] : array[index] * 2;
+    }
+    while (value > 9) {
+      value -= 9;
+    }
+    sum += value;
+  }
+  const result = sum + lastDigit;
+  return result % 10 === 0;
 }
 
 /**
@@ -307,8 +323,22 @@ function isCreditCardNumber(/* ccn */) {
  *   10000 ( 1+0+0+0+0 = 1 ) => 1
  *   165536 (1+6+5+5+3+6 = 26,  2+6 = 8) => 8
  */
-function getDigitalRoot(/* num */) {
-  throw new Error('Not implemented');
+function getDigitalRoot(num) {
+  function getSum(number) {
+    const initialValue = 0;
+    const value = number
+      .toString()
+      .split('')
+      .map(Number)
+      .reduce((first, second) => first + second, initialValue);
+    return value;
+  }
+  let result = getSum(num);
+
+  while (result > 9) {
+    result = getSum(result);
+  }
+  return result;
 }
 
 /**
@@ -332,33 +362,34 @@ function getDigitalRoot(/* num */) {
  *   '{)' = false
  *   '{[(<{[]}>)]}' = true
  */
-function isBracketsBalanced(/* str */) {
-  throw new Error('Not implemented');
-  // if (!(str.length % 2 === 0)) {
-  //   return false;
-  // }
-  // const check = [];
-  // const regex = /[[\](){}""'']/g;
-  // const pairs = {
-  //   '"': '"',
-  //   "'": "'",
-  //   '[': ']',
-  //   '{': '}',
-  //   '(': ')',
-  // };
-  // const brackets = str.match(regex);
-  // if (!str.length || !brackets.length) {
-  //   return true;
-  // }
-  // brackets.forEach((bracket) => {
-  //   const lastBracket = check[check.length - 1];
-  //   if (pairs[lastBracket] === bracket) {
-  //     check.pop();
-  //   } else {
-  //     check.push(bracket);
-  //   }
-  // });
-  // return check.length === 0;
+function isBracketsBalanced(str) {
+  const [length] = [str.length];
+  if (!(length % 2 === 0)) {
+    return false;
+  }
+  const check = [];
+  const regex = /[[\](){}""''<>]/g;
+  const pairs = {
+    '"': '"',
+    "'": "'",
+    '[': ']',
+    '{': '}',
+    '(': ')',
+    '<': '>',
+  };
+  const brackets = str.match(regex);
+  if (!length || !brackets) {
+    return true;
+  }
+  brackets.forEach((bracket) => {
+    const lastBracket = check[check.length - 1];
+    if (pairs[lastBracket] === bracket) {
+      check.pop();
+    } else {
+      check.push(bracket);
+    }
+  });
+  return check.length === 0;
 }
 
 /**
